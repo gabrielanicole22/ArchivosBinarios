@@ -205,7 +205,7 @@ public class EmpleadosManager {
 
         hi.writeLong(new Date().getTime());
         hi.writeDouble(salario + (venta * 0.10));
-        hi.writeDouble(salario - (salario * 0.35));
+        hi.writeDouble(salario - (salario * 0.035));
         hi.writeInt(Calendar.getInstance().get(Calendar.YEAR));
         hi.writeInt(Calendar.getInstance().get(Calendar.MONTH));
         JOptionPane.showMessageDialog(null, "¡Se ha pagado al empleado!");
