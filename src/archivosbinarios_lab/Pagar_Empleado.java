@@ -1,19 +1,17 @@
-
 package archivosbinarios_lab;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Pagar_Empleado extends javax.swing.JFrame {
 
-     EmpleadosManager empleadosClase;
-    Menu menu;
-    
+    EmpleadosManager empleadosClase;
+
     public Pagar_Empleado(EmpleadosManager empleadosClase) {
         initComponents();
-        
         this.empleadosClase = empleadosClase;
-        this.menu = menu;
-         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
    
@@ -25,8 +23,8 @@ public class Pagar_Empleado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TxtCodigo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnPagar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,16 +36,21 @@ public class Pagar_Empleado extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Consolas", 3, 14)); // NOI18N
         jLabel2.setText("Codigo del Empleado: ");
 
-        jButton1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        jButton1.setText("Pagar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPagar.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        btnPagar.setText("Pagar");
+        btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPagarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        jButton2.setText("Volver");
+        btnVolver.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -56,11 +59,11 @@ public class Pagar_Empleado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btnPagar))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 175, Short.MAX_VALUE))
@@ -75,9 +78,9 @@ public class Pagar_Empleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnPagar))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnVolver)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -96,15 +99,24 @@ public class Pagar_Empleado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        int code = Integer.parseInt(TxtCodigo.getText());
+        try {
+            empleadosClase.Pagar(code);
+        } catch (IOException ex) {
+            Logger.getLogger(Pagar_Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPagarActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtCodigo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnPagar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

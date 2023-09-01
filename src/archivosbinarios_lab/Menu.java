@@ -17,7 +17,6 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     EmpleadosManager empleadosClase;
-    
 
     public Menu() {
         initComponents();
@@ -230,7 +229,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarVentaMouseExited
 
     private void btnPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseClicked
-          Pagar_Empleado addventas = new Pagar_Empleado(empleadosClase);
+        Pagar_Empleado addventas = new Pagar_Empleado(empleadosClase);
         addventas.setVisible(true);
     }//GEN-LAST:event_btnPagarMouseClicked
 
@@ -247,7 +246,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagarMouseExited
 
     private void btnDespedirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespedirMouseClicked
-          Despedir_Empleado addventas = new Despedir_Empleado(empleadosClase);
+        Despedir_Empleado addventas = new Despedir_Empleado(empleadosClase);
         addventas.setVisible(true);
 
     }//GEN-LAST:event_btnDespedirMouseClicked

@@ -15,16 +15,13 @@ import java.util.logging.Logger;
 public class Despedir_Empleado extends javax.swing.JFrame {
 
     EmpleadosManager empleadosClase;
-    Menu menu;
     
     public Despedir_Empleado(EmpleadosManager empleadosClase) {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
         this.empleadosClase = empleadosClase;
-        this.menu = menu;
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,7 +31,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
         btnDespedir = new javax.swing.JButton();
         TxtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,8 +51,13 @@ public class Despedir_Empleado extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Consolas", 3, 14)); // NOI18N
         jLabel2.setText("Codigo del Empleado: ");
 
-        jButton2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        jButton2.setText("Volver");
+        btnVolver.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,7 +66,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -85,7 +87,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
                     .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDespedir))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnVolver)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -107,6 +109,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
     private void btnDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespedirActionPerformed
         // TODO add your handling code here:
         int code = Integer.parseInt(TxtCodigo.getText());
+        this.dispose();
         try {
             empleadosClase.fireEmployee(code);
         } catch (IOException e) {
@@ -114,12 +117,15 @@ public class Despedir_Empleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDespedirActionPerformed
 
- 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtCodigo;
     private javax.swing.JButton btnDespedir;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

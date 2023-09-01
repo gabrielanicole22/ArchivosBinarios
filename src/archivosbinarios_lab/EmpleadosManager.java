@@ -110,12 +110,11 @@ public class EmpleadosManager {
             if (remps.readLong() == 0) {
                 lista += "\nCodigo: " + code
                         + "\nNombre: " + name
-                        + "\nSalario: " + salary + " $$"
+                        + "\nSalario: " + salary + " $"
                         + "\nContratacion: " + fecha;
             }
         }
         return lista;
-
     }
 
     private boolean isEmployeeActive(int code) throws IOException {
@@ -152,19 +151,14 @@ public class EmpleadosManager {
         int pos = 0;
         for (int i = 0; i < Calendar.getInstance().get(Calendar.MONTH); i++) {
             ryear.skipBytes(9);
-            pos += 5;
+            pos += 9;
         }
-
-        if (ryear.readBoolean() == false) {
-            ryear.seek(pos);
-            ryear.writeBoolean(true);
-            ryear.writeDouble(sales);
-            JOptionPane.showMessageDialog(null, "¡Se ha pagado con exito");
-            Pagar(code, sales);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "¡Error al pagar!");
-        }
+        ryear.readBoolean();
+        double salario = ryear.readDouble();
+        ryear.seek(pos);
+        ryear.readBoolean();
+        ryear.writeDouble(salario + sales);
+        JOptionPane.showMessageDialog(null, "¡Se han agregado las ventas exitosamente!");
     }
 
     private RandomAccessFile CrearArchivoRecibos(int code) throws IOException {
@@ -188,9 +182,24 @@ public class EmpleadosManager {
         return salario;
     }
 
-    public void Pagar(int code, double venta) throws IOException {
+    public void Pagar(int code) throws IOException {
         RandomAccessFile hi = CrearArchivoRecibos(code);
+        RandomAccessFile ryear = salesFileFor(code);
+        
+        ryear.seek(0);
 
+        int pos = 0;
+        for (int i = 0; i < Calendar.getInstance().get(Calendar.MONTH); i++) {
+            ryear.skipBytes(9);
+            pos += 9;
+        }
+
+        if(ryear.readBoolean()==false){
+        
+        ryear.seek(pos);
+        ryear.writeBoolean(true);
+        double venta = ryear.readDouble();
+        
         hi.seek(hi.length());
         double salario = salario(code);
 
@@ -199,5 +208,10 @@ public class EmpleadosManager {
         hi.writeDouble(salario - (salario * 0.35));
         hi.writeInt(Calendar.getInstance().get(Calendar.YEAR));
         hi.writeInt(Calendar.getInstance().get(Calendar.MONTH));
+        JOptionPane.showMessageDialog(null, "¡Se ha pagado al empleado!");
+        }else{
+            
+        JOptionPane.showMessageDialog(null, "¡Error: Ya se le pagó a este empleado!");
+        }
     }
 }
