@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package archivosbinarios_lab;
 
 import java.io.File;
@@ -9,11 +5,13 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Gabriela Mejía
+ * @author Gabriela Mejía && David Zelaya && Miguel Medrano 
  */
+
 public class EmpleadosManager {
         private RandomAccessFile rcods, remps;
 
@@ -100,19 +98,25 @@ public class EmpleadosManager {
     Realizar una lista de empleados NO DESPEDIDOS con la siguiente estructura
     Codigo - Nombre - Salario - Fecha Contratacion 
     */
-    public void employeeList() throws IOException{
+      public String Employeelist ()throws IOException{
         remps.seek(0);
+        String lista="";
         while(remps.getFilePointer()<remps.length()){
             int code=remps.readInt();
-            String nombre=remps.readUTF();
+            String name=remps.readUTF();
             double salary=remps.readDouble();
-            Date fecha=new Date(remps.readLong());
+            Date  fecha=new Date(remps.readLong());
             if(remps.readLong()==0){
-                System.out.println(code+" - "+ nombre+" - $"+salary+" - "+fecha);
-            }
+                lista+="\nCodigo: "+code
+                        +"\nNombre: "+name
+                        +"\nSalario: "+salary+" $$"
+                        +"\nContratacion: "+fecha;
+            }   
         }
+        return lista;
+        
     }
-    
+      
     private boolean isEmployeeActive(int code) throws IOException{
         remps.seek(0);
         while(remps.getFilePointer()<remps.length()){
@@ -128,14 +132,16 @@ public class EmpleadosManager {
         return false;
     }
     
-    public boolean fireEmployee(int code) throws IOException{
-        if(isEmployeeActive(code)){
-            String name = remps.readUTF();
-            remps.skipBytes(16);
-            remps.writeLong(new Date().getTime());
-            System.out.println("Despidiendo a: "+name);
-            return true;
-        }
-        return false;
+   public boolean fireEmployee(int code)throws IOException{
+    if(isEmployeeActive(code)){
+        String name=remps.readUTF();
+        remps.skipBytes(16);
+        remps.writeLong(new Date().getTime());
+        JOptionPane.showMessageDialog(null, "Despidiendo a "+name);
+    return true;
     }
+    JOptionPane.showMessageDialog(null, "Error al despedir a este empleado");
+    return false;
+}
+    
 }
