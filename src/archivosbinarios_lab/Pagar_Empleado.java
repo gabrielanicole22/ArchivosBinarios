@@ -4,16 +4,15 @@ package archivosbinarios_lab;
 
 public class Pagar_Empleado extends javax.swing.JFrame {
 
-     EmpleadosManager empleadosmanager;
+     EmpleadosManager empleadosClase;
     Menu menu;
     
-    public Pagar_Empleado() {
+    public Pagar_Empleado(EmpleadosManager empleadosClase) {
         initComponents();
         
-        this.empleadosmanager = empleadosmanager;
+        this.empleadosClase = empleadosClase;
         this.menu = menu;
-        
-        
+ 
     }
 
    

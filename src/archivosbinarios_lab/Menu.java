@@ -195,7 +195,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarEmpleadoMouseExited
 
     private void btnListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseClicked
-        // TODO add your handling code here:
+        Listar_Empleados_No_Despedidos addempleado = new Listar_Empleados_No_Despedidos(empleadosClase);
+        addempleado.setVisible(true);
     }//GEN-LAST:event_btnListarMouseClicked
 
     private void btnListarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseEntered
@@ -229,7 +230,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarVentaMouseExited
 
     private void btnPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseClicked
-        // TODO add your handling code here:
+          Pagar_Empleado addventas = new Pagar_Empleado(empleadosClase);
+        addventas.setVisible(true);
     }//GEN-LAST:event_btnPagarMouseClicked
 
     private void btnPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseEntered
@@ -245,7 +247,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagarMouseExited
 
     private void btnDespedirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespedirMouseClicked
-        // TODO add your handling code here:
+          Despedir_Empleado addventas = new Despedir_Empleado(empleadosClase);
+        addventas.setVisible(true);
 
     }//GEN-LAST:event_btnDespedirMouseClicked
 

@@ -12,17 +12,17 @@ import java.io.IOException;
  */
 public class Listar_Empleados_No_Despedidos extends javax.swing.JFrame {
 
-    EmpleadosManager empleadosmanager;
+    EmpleadosManager empleadosClase;
     Menu menu;
     
-    public Listar_Empleados_No_Despedidos() throws IOException {
+    public Listar_Empleados_No_Despedidos(EmpleadosManager empleadosClase) throws IOException  {
         initComponents();
         
-        this.empleadosmanager = empleadosmanager;
+        this.empleadosClase = empleadosClase;
         this.menu = menu;
         
         jTextArea1.setEditable(false);
-        jTextArea1.setText(empleadosmanager.Employeelist());
+        jTextArea1.setText(empleadosClase.Employeelist());
         
     }
 
@@ -97,9 +97,7 @@ public class Listar_Empleados_No_Despedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Menu volver = new Menu();
-        volver.setVisible(true);
-        this.setVisible(false);
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
