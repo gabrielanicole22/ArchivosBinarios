@@ -17,6 +17,7 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     EmpleadosManager empleadosClase;
+    
 
     public Menu() {
         initComponents();
