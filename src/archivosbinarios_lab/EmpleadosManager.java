@@ -62,6 +62,7 @@ public class EmpleadosManager {
         remps.writeLong(0);
         //Aseguramos sus archivos individuales
         createEmployeeFolders(code);
+        CrearArchivoRecibos(code);
     }
 
     public String employeeFolder(int code) {
@@ -87,8 +88,8 @@ public class EmpleadosManager {
         RandomAccessFile ryear=salesFileFor(code);
         if(ryear.length()==0){
             for(int m=0;m<12;m++){
-                ryear.writeDouble(0);
                 ryear.writeBoolean(false);
+                ryear.writeDouble(0);
             }
         }
     }
@@ -143,5 +144,66 @@ public class EmpleadosManager {
     JOptionPane.showMessageDialog(null, "Error al despedir a este empleado");
     return false;
 }
+   
+   public void addSalestoEmployee(int code,double sales)throws IOException{
+        RandomAccessFile ryear=salesFileFor(code);
+        ryear.seek(0);
+        
+        int pos=0;
+            for(int i=0;i<Calendar.getInstance().get(Calendar.MONTH);i++){
+                ryear.skipBytes(9);
+                pos+=5;
+            }
+            
+            if(ryear.readBoolean()==false){
+            ryear.seek(pos);
+            ryear.writeBoolean(true);
+            ryear.writeDouble(sales);
+            JOptionPane.showMessageDialog(null, "Se ha pagado con exito");
+            Pagar(code,sales);
+            
+            }
+       JOptionPane.showMessageDialog(null, "Error al pagar");
+   }
+   
+    
+    private RandomAccessFile CrearArchivoRecibos (int code) throws IOException{
+        RandomAccessFile hola=new RandomAccessFile("company/empleado"+code,"rw");
+        return hola;
+    }
+    
+    private double salario(int code)throws IOException{
+        remps.seek(0);
+        double salario=0;
+        
+        while(remps.getFilePointer()<remps.length()){
+        int codigo=remps.readInt();
+        remps.readUTF();
+        double salary=remps.readDouble();
+        remps.skipBytes(16);
+        if(codigo==code){
+            salario=salary;
+        }
+        
+        }
+        
+        return salario;
+    }
+    
+    
+    public void Pagar(int code,double venta)throws IOException{
+        RandomAccessFile hi=CrearArchivoRecibos(code);
+        
+        hi.seek(hi.length());
+        double salario=salario(code);
+        
+        hi.writeLong(new Date().getTime());
+        hi.writeDouble(salario+(venta*0.10));
+        hi.writeDouble(salario-(salario*0.35));
+        hi.writeInt(Calendar.getInstance().get(Calendar.YEAR));
+        hi.writeInt(Calendar.getInstance().get(Calendar.MONTH));
+        
+    }
+    
     
 }
