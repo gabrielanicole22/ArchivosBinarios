@@ -12,7 +12,8 @@ public class Pagar_Empleado extends javax.swing.JFrame {
         
         this.empleadosClase = empleadosClase;
         this.menu = menu;
- 
+         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
     }
 
    
@@ -92,6 +93,7 @@ public class Pagar_Empleado extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

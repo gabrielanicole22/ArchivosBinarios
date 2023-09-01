@@ -4,6 +4,11 @@
  */
 package archivosbinarios_lab;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gabriela Mejía
@@ -101,6 +106,13 @@ public class AgregarEmpleado extends javax.swing.JFrame {
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         // TODO add your handling code here:
+        double salario = Double.parseDouble(txtSalario.getText());
+        JOptionPane.showMessageDialog(rootPane, "¡Empleado agregado exitosamente!");
+        try {
+            empleadosClase.addEmployee(txtNombre.getText(), salario);
+        } catch (IOException e) {
+            Logger.getLogger(AgregarEmpleado.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
 

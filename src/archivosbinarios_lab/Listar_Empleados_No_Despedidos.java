@@ -5,6 +5,8 @@
 package archivosbinarios_lab;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,14 +17,18 @@ public class Listar_Empleados_No_Despedidos extends javax.swing.JFrame {
     EmpleadosManager empleadosClase;
     Menu menu;
     
-    public Listar_Empleados_No_Despedidos(EmpleadosManager empleadosClase) throws IOException  {
+    public Listar_Empleados_No_Despedidos(EmpleadosManager empleadosClase){
         initComponents();
-        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
         this.empleadosClase = empleadosClase;
         this.menu = menu;
         
         jTextArea1.setEditable(false);
-        jTextArea1.setText(empleadosClase.Employeelist());
+        try {
+            jTextArea1.setText(empleadosClase.Employeelist());
+        } catch (IOException ex) {
+            Logger.getLogger(Listar_Empleados_No_Despedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

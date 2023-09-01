@@ -4,6 +4,10 @@
  */
 package archivosbinarios_lab;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Gabriela Mejía
@@ -99,6 +103,14 @@ public class AgregarVentas extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
+        int code = Integer.parseInt(txtCode.getText());
+
+        double ventas = Double.parseDouble(txtVentas.getText());
+        try {
+            empleadosClase.addSalestoEmployee(code, ventas);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarVentas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
 

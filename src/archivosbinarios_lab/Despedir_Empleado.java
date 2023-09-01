@@ -4,6 +4,10 @@
  */
 package archivosbinarios_lab;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Ricki Millones
@@ -15,7 +19,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
     
     public Despedir_Empleado(EmpleadosManager empleadosClase) {
         initComponents();
-        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
         this.empleadosClase = empleadosClase;
         this.menu = menu;
     }
@@ -27,7 +31,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnDespedir = new javax.swing.JButton();
         TxtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -39,8 +43,13 @@ public class Despedir_Empleado extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Consolas", 3, 18)); // NOI18N
         jLabel1.setText("Despedir Empleado");
 
-        jButton1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        jButton1.setText("Despedir");
+        btnDespedir.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        btnDespedir.setText("Despedir");
+        btnDespedir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDespedirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Consolas", 3, 14)); // NOI18N
         jLabel2.setText("Codigo del Empleado: ");
@@ -59,7 +68,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btnDespedir))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(96, Short.MAX_VALUE))
@@ -74,7 +83,7 @@ public class Despedir_Empleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnDespedir))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -92,13 +101,24 @@ public class Despedir_Empleado extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespedirActionPerformed
+        // TODO add your handling code here:
+        int code = Integer.parseInt(TxtCodigo.getText());
+        try {
+            empleadosClase.fireEmployee(code);
+        } catch (IOException e) {
+            Logger.getLogger(Despedir_Empleado.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_btnDespedirActionPerformed
 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtCodigo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDespedir;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
